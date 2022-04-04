@@ -1,6 +1,7 @@
 package cn.sichu.fxgame.controller;
 
-import cn.sichu.fxgame.sound.SoundEffect;
+import cn.sichu.fxgame.Director;
+import cn.sichu.fxgame.utils.SoundEffect;
 import javafx.fxml.FXML;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -17,7 +18,8 @@ public class IndexController {
 
     @FXML
     void mouseClickedStartGame(MouseEvent event) {
-
+        Director.getInstance().gameStart();
+        SoundEffect.play("/sounds/button.wav");
     }
 
     @FXML

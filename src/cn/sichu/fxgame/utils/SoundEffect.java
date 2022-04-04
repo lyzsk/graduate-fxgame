@@ -1,4 +1,4 @@
-package cn.sichu.fxgame.sound;
+package cn.sichu.fxgame.utils;
 
 import javafx.scene.media.AudioClip;
 

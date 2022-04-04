@@ -1,5 +1,6 @@
 package cn.sichu.fxgame;
 
+import cn.sichu.fxgame.scene.GameScene;
 import cn.sichu.fxgame.scene.Index;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
@@ -19,6 +20,7 @@ public class Director {
     public static final double HEIGHT = 540;
 
     private Stage stage;
+    private GameScene gameScene = new GameScene();
 
     private Director() {
 
@@ -41,7 +43,7 @@ public class Director {
     }
 
     public void gameStart() {
-
+        gameScene.init(stage);
     }
 
     public void gameOver() {

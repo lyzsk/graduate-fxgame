@@ -16,7 +16,7 @@ public class Index {
 
     public static void load(Stage stage) {
         /*
-         * 用反射的方法调用url,首先getScene()拿到场景对象，再把root放进根节点
+         * 用反射的方法调用url,首先stage窗口通过getScene()拿到场景对象，再把root放进根节点
          */
         try {
             Parent root = FXMLLoader.load(Index.class.getResource("/fxml/Index.fxml"));
