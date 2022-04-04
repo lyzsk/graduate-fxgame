@@ -1,5 +1,6 @@
 package cn.sichu.fxgame.sprite;
 
+import cn.sichu.fxgame.Director;
 import cn.sichu.fxgame.scene.GameScene;
 import cn.sichu.fxgame.utils.Direction;
 import cn.sichu.fxgame.utils.Group;
@@ -113,6 +114,22 @@ public class Spirit extends Role {
 
         if (direction != Direction.STOP) {
             headDir = direction;
+        }
+
+        if (x < 0) {
+            x = 0;
+        }
+        /**
+         * 还有窗口栏的y值要-
+         */
+        if (y < 0) {
+            y = 0;
+        }
+        if (x > Director.WIDTH - width) {
+            x = Director.WIDTH - width;
+        }
+        if (y > Director.HEIGHT - height) {
+            y = Director.HEIGHT - height;
         }
     }
 
