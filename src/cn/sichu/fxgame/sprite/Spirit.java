@@ -1,9 +1,13 @@
 package cn.sichu.fxgame.sprite;
 
+import java.util.List;
+import java.util.Random;
+
 import cn.sichu.fxgame.Director;
 import cn.sichu.fxgame.scene.GameScene;
 import cn.sichu.fxgame.utils.Direction;
 import cn.sichu.fxgame.utils.Group;
+import cn.sichu.fxgame.utils.SoundEffect;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
@@ -12,6 +16,8 @@ public class Spirit extends Role {
 
     Direction headDir;
     boolean keyup, keydown, keyleft, keyright;
+    double old_x, old_y;
+    public static Random random = new Random();
 
     /**
      * 宽高写死
@@ -25,7 +31,7 @@ public class Spirit extends Role {
      * @param direction
      */
     public Spirit(double x, double y, GameScene gameScene, Group group, Direction direction, Direction headDir) {
-        super(x, y, 112, 112, gameScene, group, direction);
+        super(x, y, 56, 56, gameScene, group, direction);
 
         this.headDir = headDir;
         speed = 5;
@@ -76,6 +82,9 @@ public class Spirit extends Role {
             case RIGHT:
                 keyright = false;
                 break;
+            case SPACE:
+                openFire();
+                break;
         }
         reDirect();
     }
@@ -96,6 +105,8 @@ public class Spirit extends Role {
 
     @Override
     public void move() {
+        old_x = x;
+        old_y = y;
 
         switch (direction) {
             case UP:
@@ -131,6 +142,18 @@ public class Spirit extends Role {
         if (y > Director.HEIGHT - height) {
             y = Director.HEIGHT - height;
         }
+
+        if (group.equals(Group.ENEMY)) {
+            int i = random.nextInt(60);
+            switch (i) {
+                case 15:
+                    Direction directionArray[] = Direction.values();
+                    direction = directionArray[random.nextInt(directionArray.length)];
+                case 30:
+                    openFire();
+                    break;
+            }
+        }
     }
 
     /**
@@ -140,6 +163,12 @@ public class Spirit extends Role {
     public void paint(GraphicsContext graphicsContext) {
 
         super.paint(graphicsContext);
+
+        if (group.equals(Group.ENEMY) && !alive) {
+            gameScene.spirits.remove(this);
+            SoundEffect.play("/sounds/yada.mp3");
+            return;
+        }
 
         switch (headDir) {
             case UP:
@@ -160,10 +189,54 @@ public class Spirit extends Role {
 
     }
 
-    @Override
+    /**
+     * 根据不同方向计算openFire()的位置
+     */
+    public void openFire() {
+        // double bullet_x = x + width / 2;
+        // double bullet_y = y + height / 2;
+        // Bullet bullet = new Bullet(bullet_x, bullet_y, gameScene, group, headDir);
+        // gameScene.bullets.add(bullet);
+        double bullet_x = x;
+        double bullet_y = y;
+
+        switch (headDir) {
+            case UP:
+                bullet_x = x + 25;
+                bullet_y = y;
+                break;
+            case DOWN:
+                bullet_x = x + 25;
+                bullet_y = y + height;
+                break;
+            case LEFT:
+                bullet_x = x;
+                bullet_y = y + 25;
+                break;
+            case RIGHT:
+                bullet_x = x + width;
+                bullet_y = y + 25;
+                break;
+        }
+
+        SoundEffect.play("/sounds/attack.mp3");
+        gameScene.bullets.add(new Bullet(bullet_x, bullet_y, gameScene, group, headDir));
+    }
+
     public boolean impactChecking(Sprite sprite) {
-        // TODO Auto-generated method stub
+        if (sprite != null && !sprite.equals(this) && getContour().intersects(sprite.getContour())) {
+            x = old_x;
+            y = old_y;
+            return true;
+        }
+
         return false;
     }
 
+    public void impactChecking(List<? extends Sprite> sprites) {
+
+        for (Sprite sprite : sprites) {
+            impactChecking(sprite);
+        }
+    }
 }

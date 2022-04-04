@@ -24,13 +24,13 @@ public class IndexController {
 
     @FXML
     void mouseEnteredStartGame(MouseEvent event) {
-        startGame.setOpacity(0.5);
+        // startGame.setOpacity(0.5);
         SoundEffect.play("/sounds/isshoniikimashou.mp3");
     }
 
     @FXML
     void mouseExitedStartGame(MouseEvent event) {
-        startGame.setOpacity(1);
+        // startGame.setOpacity(1);
     }
 
 }

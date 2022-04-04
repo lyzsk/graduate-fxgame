@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="540.0" maxWidth="960.0" minHeight="540.0" minWidth="960.0" prefHeight="540.0" prefWidth="960.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cn.sichu.fxgame.controller.GameOverController">
+   <children>
+      <ImageView fitHeight="540.0" fitWidth="960.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/bg1.png" />
+         </image></ImageView>
+      <ImageView fx:id="flag" fitHeight="318.0" fitWidth="327.0" layoutY="231.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/game_over.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="toIndex" fitHeight="150.0" fitWidth="200.0" layoutX="405.0" layoutY="195.0" onMouseClicked="#mouseClickedToIndex" onMouseEntered="#mouseEnteredToIndex" onMouseExited="#mouseExitedToIndex" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/hayaku.gif" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

@@ -1,7 +1,9 @@
 package cn.sichu.fxgame;
 
+import cn.sichu.fxgame.scene.GameOver;
 import cn.sichu.fxgame.scene.GameScene;
 import cn.sichu.fxgame.scene.Index;
+import cn.sichu.fxgame.utils.SoundEffect;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
@@ -38,22 +40,29 @@ public class Director {
         stage.setResizable(false);
         stage.setScene(scene);
         this.stage = stage;
-        toIndex(stage);
+        toIndex();
         stage.show();
+        SoundEffect.play("/sounds/main_bgm.mp3");
     }
 
     public void gameStart() {
         gameScene.init(stage);
     }
 
-    public void gameOver() {
+    public void gameOver(boolean success) {
+
+        gameScene.clear(stage);
+        /**
+         * clear()后跳转到游戏结束页面
+         */
+        GameOver.load(stage, success);
 
     }
 
     /**
      * 调用toIndex()跳转到主页
      */
-    public void toIndex(Stage stage) {
+    public void toIndex() {
         Index.load(stage);
     }
 }

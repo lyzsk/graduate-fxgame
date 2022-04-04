@@ -45,5 +45,12 @@ public abstract class Role extends Sprite {
 
     public abstract void move();
 
-    public abstract boolean impactChecking(Sprite sprite);
+    public boolean isAlive() {
+        return alive;
+    }
+
+    public void setAlive(boolean alive) {
+        this.alive = alive;
+    }
+
 }

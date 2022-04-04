@@ -17,6 +17,7 @@ public class SoundEffect {
      */
     public static void play(String src) {
         AudioClip audioClip = new AudioClip(SoundEffect.class.getResource(src).toString());
+        audioClip.setVolume(0.80);
         audioClip.play();
     }
 }
