@@ -1,8 +1,15 @@
 # JAVAFX game
 - [JAVAFX game](#javafx-game)
+- [运行截图](#运行截图)
 - [Intro](#Intro)
 - [Installation](#Installation)
 - [Dev Enviorment](#Dev-Enviorment)
+
+# 运行截图
+![Image text](https://github.com/lyzsk/graduate-fxgame/blob/master/screenshoot/screenshoot1.png)
+
+![Image text](https://github.com/lyzsk/graduate-fxgame/blob/master/screenshoot/screenshoot2.png)
+
 
 # Intro
 - 复习下JAVAFX, 一个打炮躲避游戏，估计这辈子不会再用了
