@@ -127,7 +127,7 @@ public class GameScene {
      * 私有 初始化sprite的方法
      */
     private void initSprite() {
-        for (int i = 0; i < 1; i++) {
+        for (int i = 0; i < 6; i++) {
             Spirit spirit = new Spirit(200 + i * 80, 100, this, Group.ENEMY, Direction.STOP, Direction.DOWN);
             spirits.add(spirit);
         }
